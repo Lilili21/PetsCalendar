@@ -1,6 +1,8 @@
 package pet.docs.dogs.presentation
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,8 +15,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.popup_add_event.view.*
 import pet.docs.dogs.R
 import pet.docs.dogs.data.animalInfo.DogInformationStorageImpl
 import pet.docs.dogs.domain.animals.IsDogExistUseCase
@@ -27,6 +31,7 @@ private const val TAG = "MAIN_ACTIVITY"
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var vm: MainActivityViewModel
     private var year : Int = 1
     private var month : Int = 1
     private var day : Int = 1
@@ -34,13 +39,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
-
+    private lateinit var popUp : PopupWindow
     private val userRepository by lazy (LazyThreadSafetyMode.NONE){ DogInformationStorageImpl(applicationContext) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.i(TAG, "app created")
         setContentView(R.layout.activity_main)
+        vm = ViewModelProvider(this)[MainActivityViewModel::class.java]
+
         calendarView.setOnDateChangeListener { _, i, i1, i2 ->
             year = i
             month = i1
@@ -118,12 +125,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addEvent(view: View) {
-        val popUp = PopupWindow(this)
+       // val
+        popUp = PopupWindow(this)
         val viewPopUp = layoutInflater.inflate(R.layout.popup_add_event, null)
 
         popUp.contentView = viewPopUp
 
-        val eventType = viewPopUp.findViewById<Spinner>(R.id.event_type)
+        val eventType = viewPopUp.findViewById<Spinner>(R.id.eventType)
         eventType.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
@@ -136,39 +144,25 @@ class MainActivity : AppCompatActivity() {
             EventRegularity.returnAllNames()
         )
         val commentBox = viewPopUp.findViewById<EditText>(R.id.comments)
-
-        viewPopUp.findViewById<Button>(R.id.saveEvent).setOnClickListener {
-            println("event_type = " + eventType.selectedItem)
-            println("regularityID = " + regularity.selectedItemId + "regularity = " + regularity.selectedItem)
-            println("comments3 = " + commentBox.text.toString())
-            popUp.dismiss()
-        }
         commentBox.setOnFocusChangeListener { v, hasFocus ->
+
             println(
                 "commentBox.isPressed = " + commentBox.isPressed + ", hasFocus = " + hasFocus
                         + "popUp.isShowing = " + popUp.isShowing
             )
             if (hasFocus) {
                 println("commentBox isPressed")
-                findViewById<Button>(R.id.showEvent).visibility = View.GONE
-                findViewById<Button>(R.id.addEvent).visibility = View.GONE
+                //popUp.isFocusable = true
+                showEvent.visibility = View.GONE
+                addEvent.visibility = View.GONE
             } else {
+                showEvent.visibility = View.VISIBLE
+                addEvent.visibility = View.VISIBLE
                 println("commentBox isUnPressed")
-                findViewById<Button>(R.id.showEvent).visibility = View.VISIBLE
-                findViewById<Button>(R.id.addEvent).visibility = View.VISIBLE
             }
         }
-
-        viewPopUp.findViewById<Button>(R.id.cancel).setOnClickListener {
-            popUp.dismiss()
-        }
-        popUp.isOutsideTouchable = isRestricted
-        println("isOutsideTouchable = " + popUp.isOutsideTouchable)
-        if (popUp.isOutsideTouchable) {
-            println("isOutsideTouchable")
-        }
         popUp.isFocusable = true
-        popUp.update()
+        popUp.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         popUp.showAsDropDown(addEvent)
     }
 
@@ -181,7 +175,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = SimpleAdapter(this, convertToShowList(eventsList()),R.layout.pattern_show_events,
             arrayOf("eventType","comment"), intArrayOf(R.id.event_title, R.id.comment))
 
-        val te = viewPopUp.findViewById<ListView>(R.id.ListView)
+        val te = viewPopUp.findViewById<ListView>(R.id.viewEventsFromPopUp)
         te.adapter = adapter
         popUp.isFocusable = true
         popUp.update()
@@ -201,5 +195,16 @@ class MainActivity : AppCompatActivity() {
             eventsList.add(event.convertParamsOfEventToShowInThePopUp())
         }
         return eventsList
+    }
+
+    fun cancelClicked(view: View) {
+        popUp.dismiss()
+    }
+
+    fun saveClicked(view: View) {
+        println("event_type = " + popUp.contentView.eventType.selectedItem)
+        println("regularityID = " + popUp.contentView.regularity.selectedItemId + "regularity = " + popUp.contentView.regularity.selectedItem)
+        println("comments3 = " + popUp.contentView.comments.text)
+        popUp.dismiss()
     }
 }

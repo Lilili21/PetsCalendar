@@ -53,7 +53,7 @@
             android:textStyle="bold"
             android:text="@string/month"/>
         <ListView
-            android:id="@+id/ListView"
+            android:id="@+id/listViewOfEvents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -89,7 +89,7 @@
             android:text="@string/month"
             android:textStyle="bold"/>
         <ListView
-            android:id="@+id/ListView2"
+            android:id="@+id/listViewOfEvents2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
