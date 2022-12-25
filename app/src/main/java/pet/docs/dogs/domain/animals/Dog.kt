@@ -1,4 +1,4 @@
-package pet.docs.dogs.models
+package pet.docs.dogs.domain.animals
 
 class Dog(val name: String?, val birthDay: String?, private val gender:Boolean,
           var breed:String? = null,

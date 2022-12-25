@@ -1,4 +1,4 @@
-package pet.docs.dogs.models
+package pet.docs.dogs.domain.events
 
 enum class EventType(val eventValue:String, val eventNum:Int) {
     RabiesVaccination("Прививка от Бешенства", 0),

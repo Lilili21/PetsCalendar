@@ -1,4 +1,4 @@
-package pet.docs.dogs.models
+package pet.docs.dogs.domain.events
 
 enum class EventRegularity (val eventValue:String, val eventNum:Int) {
     Never("Не повторять", 0),

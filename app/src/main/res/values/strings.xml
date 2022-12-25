@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">Dogs</string>
+    <string name="app_name">Pets calendar</string>
+    <string name="add_event">add Event</string>
+    <string name="show_events">show Events</string>
+    <string name="save">save</string>
+    <string name="cancel">cancel</string>
+    <string name="month">month</string>
+    <string name="comment">Comment</string>
+    <string name="event_title">Event title</string>
+    <string name="ok">Ok</string>
+    <string name="dogAvatar">dogAvatar</string>
+    <string name="downloadImg"><![CDATA[<-]]></string>
+    <string name="date">Date</string>
+    <string name="ludwig">Ludwig</string>
+    <string name="show_this_month_events">Show this month events</string>
+    <string name="title_activity_events_show">activity_events_show</string>
+    <string name="breed">Порода</string>
+    <string name="color">Окрас</string>
+    <string name="BrandNumber">Номер клейма</string>
+    <string name="CardNumber">Номер родословной</string>
+    <string name="Breed">Порода</string>
+    <string name="male">Кобелёк</string>
+    <string name="female">Сучка</string>
+    <string name="name">Кличка</string>
+    <string name="birthdayFormat">День Рождения   dd-mm-YYYY</string>
+    <string name="birthday">День Рождение</string>
+    <string name="gender">Пол</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="content_description_of_image_in_header">add photo of animal maybe</string>
 </resources>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/main_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitEnd"/>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radioGroup"
+        android:layout_alignStart="@id/radioGroup"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:onClick="saveButtonClicked"
+        android:textSize="5pt" />
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="92dp"
+        android:layout_height="77dp"
+        android:layout_above="@id/name"
+        android:layout_alignStart="@id/name"
+        android:layout_marginStart="-9dp"
+        android:layout_marginBottom="-2dp"
+        android:contentDescription="@string/dogAvatar"
+        android:src="@drawable/icon" />
+
+    <Button
+        android:id="@+id/downloadImgButton"
+        android:layout_width="24dp"
+        android:layout_height="17dp"
+        android:layout_above="@id/name"
+        android:layout_toEndOf="@id/avatar"
+        android:background="@drawable/button"
+        android:text="@string/downloadImg"
+        android:textColor="@color/white"
+        android:textSize="9sp"
+        tools:ignore="SmallSp" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/birthday"
+        android:layout_alignStart="@id/radioGroup"
+        android:hint="@string/name"
+        android:autofillHints="name"
+        android:inputType="text"
+        android:textSize="5pt" />
+
+    <EditText
+        android:id="@+id/birthday"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/breed"
+        android:layout_alignStart="@id/radioGroup"
+        android:layout_marginBottom="2dp"
+        android:hint="@string/birthdayFormat"
+        android:autofillHints="creditCardExpirationDate"
+        android:inputType="date"
+        android:textSize="5pt" />
+
+    <EditText
+        android:id="@+id/breed"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/color"
+        android:layout_alignStart="@id/radioGroup"
+        android:layout_marginBottom="2dp"
+        android:hint="@string/breed"
+        android:autofillHints="name"
+        android:inputType="text"
+        android:textSize="5pt" />
+
+    <EditText
+        android:id="@+id/color"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/radioGroup"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="2dp"
+        android:hint="@string/color"
+        android:autofillHints="name"
+        android:inputType="text"
+        android:textSize="5pt" />
+
+    <EditText
+        android:id="@+id/cardNum"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/color"
+        android:layout_alignStart="@id/radioGroup"
+        android:layout_marginBottom="2dp"
+        android:autofillHints="username"
+        android:hint="@string/CardNumber"
+        android:inputType="text"
+        android:textSize="5pt" />
+
+    <EditText
+        android:id="@+id/brandNum"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardNum"
+        android:layout_alignStart="@id/radioGroup"
+        android:layout_marginBottom="2dp"
+        android:hint="@string/BrandNumber"
+        android:autofillHints="name"
+        android:inputType="text"
+        android:textSize="5pt" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/brandNum"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:textAllCaps="true"
+            android:textSize="5pt" />
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/female"
+            android:textAllCaps="true"
+            android:textSize="5pt" />
+    </RadioGroup>
+
+</RelativeLayout>

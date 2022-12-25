@@ -1,4 +1,4 @@
-package pet.docs.dogs.models
+package pet.docs.dogs.domain.events
 
 import java.time.LocalDate
 
