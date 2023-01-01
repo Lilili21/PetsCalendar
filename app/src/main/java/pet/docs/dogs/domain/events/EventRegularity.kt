@@ -6,7 +6,8 @@ enum class EventRegularity (val eventValue:String, val eventNum:Int) {
     EveryDay("Ежедневно", 2),
     EveryMonth("Ежемесячно", 3),
     ThreeMonth("Каждые 3 месяца", 4),
-    EveryYear("Ежегодно", 5);
+    EveryYear("Ежегодно", 5),
+    ExceptionRegularity("Ошибка", 9);
 
     companion object {
         fun returnAllNames(): List<String> {
@@ -18,6 +19,18 @@ enum class EventRegularity (val eventValue:String, val eventNum:Int) {
             names.add(ThreeMonth.eventValue)
             names.add(EveryYear.eventValue)
             return names
+        }
+
+        fun getRegularityById(id:Int): EventRegularity {
+            return when (id) {
+                0 -> Never
+                1 -> Once
+                2 -> EveryDay
+                3 -> EveryMonth
+                4 -> ThreeMonth
+                5 -> EveryYear
+                else -> ExceptionRegularity
+            }
         }
     }
 }
