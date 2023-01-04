@@ -5,6 +5,6 @@
     <item
         android:id="@+id/animal1"
         android:icon="@drawable/dog_icon"
-        android:title="@string/ludwig"/>
+        android:title="@string/pet_info"/>
 
 </menu>

@@ -1,6 +1,7 @@
 package pet.docs.dogs.presentation
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_passport_show.*
 import pet.docs.dogs.R
@@ -43,23 +44,23 @@ class PassportShowActivity : OnBackPressedToMainActivity() {
     private fun addDogsFromFile(){
         nameValue.text = ourDog.name
         birthdayValue.text = ourDog.birthDay
-        genderValue.text = ourDog.getGender()
+        genderValue.text = ourDog.getGender(this)
 
         var rowNumber = 1
-        if (ourDog.breed != "") {
-            addTextView("Порода", ourDog.breed!!, rowNumber)
+        if (!TextUtils.isEmpty(ourDog.breed)) {
+            addTextView(getString(R.string.breed), ourDog.breed!!, rowNumber)
             rowNumber++
         }
-        if (ourDog.color != "") {
-            addTextView("Окрас", ourDog.color!!, rowNumber)
+        if (!TextUtils.isEmpty(ourDog.color)) {
+            addTextView(getString(R.string.color), ourDog.color!!, rowNumber)
             rowNumber++
         }
-        if (ourDog.cardNumber != "") {
-            addTextView("Номер родословной", ourDog.cardNumber!!, rowNumber)
+        if (!TextUtils.isEmpty(ourDog.cardNumber)) {
+            addTextView(getString(R.string.tattoo_number), ourDog.cardNumber!!, rowNumber)
             rowNumber++
         }
-        if (ourDog.brandNumber != "") {
-            addTextView("Номер клейма", ourDog.brandNumber!!, rowNumber)
+        if (!TextUtils.isEmpty(ourDog.brandNumber)) {
+            addTextView(getString(R.string.microchip_number), ourDog.brandNumber!!, rowNumber)
         }
     }
 

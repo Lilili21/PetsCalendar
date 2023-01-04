@@ -34,7 +34,7 @@
         android:layout_alignStart="@id/name"
         android:layout_marginStart="-9dp"
         android:layout_marginBottom="-2dp"
-        android:contentDescription="@string/dogAvatar"
+        android:contentDescription="@string/dog_avatar"
         android:src="@drawable/icon" />
 
     <Button
@@ -44,7 +44,7 @@
         android:layout_above="@id/name"
         android:layout_toEndOf="@id/avatar"
         android:background="@drawable/button"
-        android:text="@string/downloadImg"
+        android:text="@string/download_img"
         android:textColor="@color/white"
         android:textSize="9sp"
         tools:ignore="SmallSp" />
@@ -67,7 +67,7 @@
         android:layout_above="@id/breed"
         android:layout_alignStart="@id/radioGroup"
         android:layout_marginBottom="2dp"
-        android:hint="@string/birthdayFormat"
+        android:hint="@string/birthday_format"
         android:autofillHints="creditCardExpirationDate"
         android:inputType="date"
         android:textSize="5pt" />
@@ -104,7 +104,7 @@
         android:layout_alignStart="@id/radioGroup"
         android:layout_marginBottom="2dp"
         android:autofillHints="username"
-        android:hint="@string/CardNumber"
+        android:hint="@string/microchip_number"
         android:inputType="text"
         android:textSize="5pt" />
 
@@ -115,7 +115,7 @@
         android:layout_below="@id/cardNum"
         android:layout_alignStart="@id/radioGroup"
         android:layout_marginBottom="2dp"
-        android:hint="@string/BrandNumber"
+        android:hint="@string/tattoo_number"
         android:autofillHints="name"
         android:inputType="text"
         android:textSize="5pt" />

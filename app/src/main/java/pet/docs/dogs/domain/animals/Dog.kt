@@ -1,5 +1,8 @@
 package pet.docs.dogs.domain.animals
 
+import android.content.Context
+import pet.docs.dogs.R
+
 class Dog(val name: String?, val birthDay: String?, private val gender:Boolean,
           var breed:String? = null,
           var color: String? = null,
@@ -19,8 +22,8 @@ class Dog(val name: String?, val birthDay: String?, private val gender:Boolean,
         lineArray[5],
         lineArray[6])
 
-    fun getGender(): String {
-        return if (gender) "Кобелёк" else "Сучка"
+    fun getGender(context : Context): String {
+        return if (gender) context.getString(R.string.male) else context.getString(R.string.female)
     }
 
     override fun toString(): String {

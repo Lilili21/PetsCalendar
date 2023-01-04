@@ -1,22 +1,13 @@
 package pet.docs.dogs.presentation
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import pet.docs.dogs.data.eventsDb.AppDatabase
-import pet.docs.dogs.data.eventsDb.EventElement
-import pet.docs.dogs.data.eventsDb.EventRepository
-import java.time.LocalDate
 
 private const val TAG = "MAIN_ACTIVITY"
 
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
 
-    val getAll: LiveData<List<EventElement>>
+   /* val getAll: LiveData<List<EventElement>>
     private val repository: EventRepository
 
     init {
@@ -35,7 +26,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     fun getOnDate(currentDate: LocalDate){
 
 
-    }
+    }*/
 
     /*fun getEventsWithRegularity(eRegularity: Int) : List<EventElement> {
         var eventElementList : List<EventElement> = listOf<EventElement>()
@@ -46,10 +37,10 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     }*/
 
 
-    override fun onCleared() {
+   /* override fun onCleared() {
         Log.d(TAG, "Main Activity View Model cleared")
         super.onCleared()
-    }
+    }*/
 
     /*private val getDogInfoUseCase = GetDogInfoUseCase()
     private val getEventUseCase = GetEventUseCase()*/

@@ -1,28 +1,28 @@
 package pet.docs.dogs.data.eventsDb
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
+import pet.docs.dogs.domain.events.EventElement
 
 @Dao
 interface EventDao {
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insert(eventElement: EventElement)
+
     @Query("SELECT * FROM events_list")
-    fun getAll(): LiveData<List<EventElement>>
+    fun getAll(): List<EventElement>
 
     @Query("SELECT * FROM events_list WHERE regularity = :eRegularity")
-    fun getEventsWithRegularity(eRegularity: Int): LiveData<List<EventElement>>
+    fun getEventsWithRegularity(eRegularity: Int): List<EventElement>
 
     @Query("SELECT * FROM events_list WHERE type = :eType")
-    fun getEventsWithType(eType: Int): LiveData<List<EventElement>>
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(eventDb: EventElement)
+    fun getEventsWithType(eType: Int): List<EventElement>
 
     @Delete
-    suspend fun delete(eventDb: EventElement)
+    fun delete(eventDb: EventElement)
 
     @Query("DELETE FROM events_list")
-    suspend fun deleteAll()
+    fun deleteAll()
 
     //suspend - for coroutines
 

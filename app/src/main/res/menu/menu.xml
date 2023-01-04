@@ -6,6 +6,6 @@
         android:id="@+id/show_this_month_events"
         android:icon="@drawable/paw2"
         app:showAsAction="always"
-        android:title="@string/show_this_month_events"/>
+        android:title="@string/show_nearest_events"/>
 
 </menu>

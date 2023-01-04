@@ -1,8 +1,14 @@
-package pet.docs.dogs.domain.events;
+package pet.docs.dogs.domain.events
 
-class SaveEventUseCase {
+import pet.docs.dogs.data.eventsDb.EventDb
 
-    fun execute(event: Event) : Boolean{
-        return true
+class SaveEventUseCase(private var userRepository: EventDb) {
+
+    fun execute(event: Event?) : Boolean{
+        if (event != null) {
+            userRepository.addEvent(event.convertToWriteInDb())
+            return true
+        }
+        return false
     }
 }

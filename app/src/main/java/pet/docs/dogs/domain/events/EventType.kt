@@ -1,21 +1,24 @@
 package pet.docs.dogs.domain.events
 
-enum class EventType(val eventValue:String, val eventNum:Int) {
-    RabiesVaccination("Прививка от Бешенства", 0),
-    TickPill("Таблетка от клещей", 1),
-    TickSpray("Нанесен спрей от клещей", 2),
-    WormPill("Таблетка от глистов", 3),
-    BuyingFood("Корм куплен", 4),
-    ExceptionType("Ошибка", 9);
+import android.content.Context
+import pet.docs.dogs.R
+
+enum class EventType(val eventValueId:Int, val eventNum:Int) {
+    RabiesVaccination(R.string.rabies_vaccination, 0),
+    TickPill(R.string.tick_pill, 1),
+    TickSpray(R.string.tick_spray, 2),
+    WormPill(R.string.worm_pill, 3),
+    BuyingFood(R.string.buying_food, 4),
+    ExceptionType(R.string.exception_type, 9);
 
     companion object {
-        fun returnAllNames(): List<String> {
+        fun returnAllNames(context: Context): List<String> {
             val names: MutableList<String> = mutableListOf()
-            names.add(RabiesVaccination.eventValue)
-            names.add(TickPill.eventValue)
-            names.add(TickSpray.eventValue)
-            names.add(WormPill.eventValue)
-            names.add(BuyingFood.eventValue)
+            names.add(context.getString(RabiesVaccination.eventValueId))
+            names.add(context.getString(TickPill.eventValueId))
+            names.add(context.getString(TickSpray.eventValueId))
+            names.add(context.getString(WormPill.eventValueId))
+            names.add(context.getString(BuyingFood.eventValueId))
             return names
         }
 
@@ -29,5 +32,9 @@ enum class EventType(val eventValue:String, val eventNum:Int) {
                 else -> ExceptionType
             }
         }
+    }
+
+    fun getStringValue(context : Context) : String{
+        return context.getString(this.eventValueId)
     }
 }

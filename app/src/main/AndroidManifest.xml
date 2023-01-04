@@ -29,7 +29,6 @@
         <activity
             android:name=".presentation.EventsShowAllActivity"
             android:exported="false"
-            android:label="@string/title_activity_events_show"
             android:theme="@style/Theme.Dogs.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"

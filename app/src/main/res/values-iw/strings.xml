@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pets Сalendar</string>
+    <string name="add_event">הוסף אירוע</string>
+    <string name="show_events">הצג אירועים</string>
+    <string name="save">שמירה</string>
+    <string name="cancel">ביטול</string>
+    <string name="delete">מחק</string>
+    <string name="month">חודש</string>
+    <string name="comment">הערות</string>
+    <string name="event_title">שם המאורע</string>
+    <string name="dog_avatar">תמונה</string>
+    <string name="download_img"><![CDATA[<-]]></string>
+    <string name="date">תאריך</string>
+    <string name="pet_info">פרטי החיה</string>
+    <string name="show_nearest_events">הצג אירועי החודש</string>
+    <string name="breed">גזע</string>
+    <string name="color">צבע</string>
+    <string name="tattoo_number">מספר זיהוי</string>
+    <string name="microchip_number">מספר שבב</string>
+    <string name="male">זכר</string>
+    <string name="female">נקבה</string>
+    <string name="name">כינוי</string>
+    <string name="birthday_format">תאריך לידה   dd-mm-YYYY</string>
+    <string name="birthday">תאריך לידה</string>
+    <string name="gender">מין</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="content_description_of_image_in_header">הוסף תמונה</string>
+    <!-- Strings used for notifications in code-->
+    <string name="sex_notification">בחר מין</string>
+    <string name="name_notification">הכנס כינוי</string>
+    <string name="birthday_notification">הכנס תאריך לידה</string>
+    <string name="date_notification">אנא בחרו תאריך</string>
+    <string name="incorrect_date_notification">אנא הכניסו תאריך קיים</string>
+    <!-- Strings used for events notification in code -->
+    <string name="empty_events_list_this_day">אין אירועים ביום זה</string>
+    <string name="empty_events_list_this_month">אין אירועים בחודש זה</string>
+    <!-- Strings used for event details -->
+    <string name="never">חד פעמי</string>
+    <string name="every_day">יומי</string>
+    <string name="every_month">חודשי</string>
+    <string name="every_three_months">כל 3 חודשים</string>
+    <string name="every_year">שנתי</string>
+    <string name="exception_regularity">שגיאה</string>
+
+    <string name="rabies_vaccination">חיסון כלבת</string>
+    <string name="tick_pill">גלולת פרעושים</string>
+    <string name="tick_spray">תרסיס פרעושים</string>
+    <string name="worm_pill">גלולת תולעים</string>
+    <string name="buying_food">הזמנת אוכל</string>
+    <string name="exception_type">שגיאה</string>
+</resources>

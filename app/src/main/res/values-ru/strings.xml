@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pets Сalendar</string>
+    <string name="add_event">Добавить событие</string>
+    <string name="show_events">Показать события</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отменить</string>
+    <string name="delete">Удалить</string>
+    <string name="month">Месяц</string>
+    <string name="comment">Комментарии</string>
+    <string name="event_title">Тема события</string>
+    <string name="dog_avatar">Фотография</string>
+    <string name="download_img"><![CDATA[<-]]></string>
+    <string name="date">Дата</string>
+    <string name="pet_info">Питомец</string>
+    <string name="show_nearest_events">Показать ближайшие события</string>
+    <string name="breed">Порода</string>
+    <string name="color">Окрас</string>
+    <string name="tattoo_number">Номер клейма</string>
+    <string name="microchip_number">Номер чипа</string>
+    <string name="male">Кобелёк</string>
+    <string name="female">Сучка</string>
+    <string name="name">Кличка</string>
+    <string name="birthday_format">Дата рождения   dd-mm-YYYY</string>
+    <string name="birthday">Дата рождение</string>
+    <string name="gender">Пол</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="content_description_of_image_in_header">Добавить фотографию</string>
+    <!-- Strings used for notifications in code-->
+    <string name="sex_notification">Укажите пол</string>
+    <string name="name_notification">Заполните имя</string>
+    <string name="birthday_notification">Заполните дату рождения питомца</string>
+    <string name="date_notification">Выберете дату</string>
+    <string name="incorrect_date_notification">Укажите существующую дату</string>
+    <!-- Strings used for events notification in code -->
+    <string name="empty_events_list_this_day">В этот день нет событий</string>
+    <string name="empty_events_list_this_month">В этом месяце нет событий</string>
+    <!-- Strings used for event details -->
+    <string name="never">Не повторять</string>
+    <string name="every_day">Ежедневно</string>
+    <string name="every_month">Ежемесячно</string>
+    <string name="every_three_months">Каждые 3 месяца</string>
+    <string name="every_year">Ежегодно</string>
+    <string name="exception_regularity">Ошибка</string>
+    <string name="rabies_vaccination">Прививка от Бешенства</string>
+    <string name="tick_pill">Таблетка от клещей</string>
+    <string name="tick_spray">Спрей от клещей</string>
+    <string name="worm_pill">Таблетка от глистов</string>
+    <string name="buying_food">Корм куплен</string>
+    <string name="exception_type">Ошибка</string>
+</resources>
