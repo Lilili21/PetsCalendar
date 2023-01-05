@@ -1,8 +1,6 @@
 package pet.docs.dogs.presentation
 
 import android.content.Intent
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -43,7 +41,7 @@ class PassportCreateActivity :OnBackPressedToMainActivity(){
         if (radioGroup.checkedRadioButtonId != -1) {
             selectedRadioButton = findViewById(radioGroup.checkedRadioButtonId)
         } else {
-            Toast.makeText(baseContext, getString(R.string.sex_notification), Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.sex_notification), Toast.LENGTH_SHORT).show()
         }
 
         if (selectedRadioButton != null && checkInfo(name, birthday)) {
@@ -60,7 +58,7 @@ class PassportCreateActivity :OnBackPressedToMainActivity(){
     private fun readDogInformation(dogSex: String) : Dog{
         val ourDog = Dog(
             name.text.toString(), birthday.text.toString(),
-            dogSex == getString(R.string.male)/*StringConstantsRu.SEX_BOY*/
+            dogSex == getString(R.string.male)
         )
         if (breed.text.toString().isNotEmpty()) ourDog.breed = breed.text.toString()
         if (color.text.toString().isNotEmpty()) ourDog.color = color.text.toString()
@@ -76,14 +74,12 @@ class PassportCreateActivity :OnBackPressedToMainActivity(){
         name: EditText,
         birthday: EditText,
     ): Boolean {
-        val backToast: Toast
         val correctName = checkIfParameterEmpty(name, getString(R.string.name_notification))
         var correctBirthday = checkIfParameterEmpty(birthday, getString(R.string.birthday_notification))
 
         //проверка что дата указана корректно
         if (correctBirthday && !checkBirthdayDate(birthday.text.toString())) {
-            backToast = Toast.makeText(baseContext, getString(R.string.incorrect_date_notification), Toast.LENGTH_SHORT)
-            backToast.show()
+            Toast.makeText(this, getString(R.string.incorrect_date_notification), Toast.LENGTH_SHORT).show()
             correctBirthday = false
         }
         return correctName && correctBirthday

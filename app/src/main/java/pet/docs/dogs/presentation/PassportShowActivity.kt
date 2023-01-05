@@ -25,7 +25,7 @@ class PassportShowActivity : OnBackPressedToMainActivity() {
         val dogInfoStorage = GetDogInfoUseCase(userRepository)
         val dogExistInStorage = IsDogExistUseCase(userRepository)
         if (dogExistInStorage.execute()) {
-            ourDog = dogInfoStorage.execute()
+            ourDog = dogInfoStorage.getDog()
             addDogsFromFile()
         } else {
             Log.e(TAG, "Failed to read dog info in the file")
@@ -47,19 +47,19 @@ class PassportShowActivity : OnBackPressedToMainActivity() {
         genderValue.text = ourDog.getGender(this)
 
         var rowNumber = 1
-        if (!TextUtils.isEmpty(ourDog.breed)) {
+        if (!ourDog.breed.isNullOrEmpty()) {
             addTextView(getString(R.string.breed), ourDog.breed!!, rowNumber)
             rowNumber++
         }
-        if (!TextUtils.isEmpty(ourDog.color)) {
+        if (!ourDog.color.isNullOrEmpty()) {
             addTextView(getString(R.string.color), ourDog.color!!, rowNumber)
             rowNumber++
         }
-        if (!TextUtils.isEmpty(ourDog.cardNumber)) {
+        if (!ourDog.cardNumber.isNullOrEmpty()) {
             addTextView(getString(R.string.tattoo_number), ourDog.cardNumber!!, rowNumber)
             rowNumber++
         }
-        if (!TextUtils.isEmpty(ourDog.brandNumber)) {
+        if (!ourDog.brandNumber.isNullOrEmpty()) {
             addTextView(getString(R.string.microchip_number), ourDog.brandNumber!!, rowNumber)
         }
     }

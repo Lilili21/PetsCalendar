@@ -22,6 +22,7 @@ class Dog(val name: String?, val birthDay: String?, private val gender:Boolean,
         lineArray[5],
         lineArray[6])
 
+
     fun getGender(context : Context): String {
         return if (gender) context.getString(R.string.male) else context.getString(R.string.female)
     }
@@ -36,14 +37,10 @@ class Dog(val name: String?, val birthDay: String?, private val gender:Boolean,
 
     fun additionalParams(): String {
         val result = StringBuilder()
-        result.append(",")
-        if (breed != null) result.append(breed)
-        result.append(",")
-        if (color != null) result.append(color)
-        result.append(",")
-        if (cardNumber != null) result.append(cardNumber)
-        result.append(",")
-        if (brandNumber != null) result.append(brandNumber)
+        result.append(",").takeIf{breed != null}?.append(breed)
+        result.append(",").takeIf{color != null}?.append(color)
+        result.append(",").takeIf{cardNumber != null}?.append(cardNumber)
+        result.append(",").takeIf{brandNumber != null}?.append(brandNumber)
         return result.toString()
     }
 

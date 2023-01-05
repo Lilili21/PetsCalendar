@@ -15,6 +15,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.popup_add_event.view.*
@@ -33,15 +34,17 @@ class MainActivity : AppCompatActivity() {
 
     private var dateFromCalendar: LocalDate = DEFAULT_DATE
 
+    private lateinit var viewModel: MainActivityViewModel
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarToggle: ActionBarDrawerToggle
     private lateinit var navView: NavigationView
     private lateinit var popUp: PopupWindow
-    private val userRepository by lazy(LazyThreadSafetyMode.NONE) {
+    /*private val userRepository by lazy(LazyThreadSafetyMode.NONE) {
         DogInformationStorageImpl(
             applicationContext
         )
-    }
+    }*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         Log.i(TAG, "app created")
         setContentView(R.layout.activity_main)
         // vm = ViewModelProvider(this)[MainActivityViewModel::class.java]
-
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         drawerLayout = findViewById(R.id.mainActivityLayout)
         actionBarToggle = ActionBarDrawerToggle(this, drawerLayout, 0, 0)
         drawerLayout.addDrawerListener(actionBarToggle)
@@ -61,22 +64,22 @@ class MainActivity : AppCompatActivity() {
         actionBarToggle.syncState()
 
        //
-        val dogExistInStorage = IsDogExistUseCase(userRepository)
+       // val dogExistInStorage = IsDogExistUseCase(userRepository)
 
         // Call findViewById on the NavigationView
         navView = findViewById(R.id.navView)
-        if (dogExistInStorage.execute()) {
-            val name = GetDogInfoUseCase(userRepository).getDogName()
-            if (name.isNotEmpty())
-                navView.menu.findItem(R.id.animal1).title = name
+
+        if (viewModel.needToChangeTitle()) {
+            navView.menu.findItem(R.id.animal1).title = viewModel.dogName()
         }
+
         // Call setNavigationItemSelectedListener on the NavigationView to detect when items are clicked
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.animal1 -> {
 
                     //проверяем есть ли данные о песике в памяти приложения
-                    val intent = if (dogExistInStorage.execute()) Intent(
+                    val intent = if (viewModel.isDogExist()) Intent(
                         this@MainActivity,
                         PassportShowActivity::class.java
                     ) else Intent(this@MainActivity, PassportCreateActivity::class.java)
