@@ -49,4 +49,30 @@
     <string name="worm_pill">גלולת תולעים</string>
     <string name="buying_food">הזמנת אוכל</string>
     <string name="exception_type">שגיאה</string>
+
+    <string name="events_on_date">אירועים ב %1$s</string>
+    <string name="events_saved">אירוע %1$s נשמר ב %2$s</string>
+    <string name="event_deleted">אירוע זה נמחק, לחץ עדכן</string>
+    <string name="event_deleted_update">האירוע נמחק, לחץ עדכן</string>
+    <string name="event_changed_update">אירוע עודכן, לחץ עדכן</string>
+    <string name="incorrect_expired_date">בדוק תאריך תפוגה</string>
+    <string name="early_expired_date">תאריך התפוגה צריך להיות לאחר תאריך האירוע</string>
+    <string name="expired_date_hint">עד </string>
+
+    <string name="every_day_since">כל יום החל מ </string>
+    <string name="no_expiration_date">אין תאריך תפוגה</string>
+
+    <string name="january">ינואר</string>
+    <string name="february">פברואר</string>
+    <string name="march">מרץ</string>
+    <string name="april">אפריל</string>
+    <string name="may">מאי</string>
+    <string name="june">יוני</string>
+    <string name="july">יולי</string>
+    <string name="august">אוגוסט</string>
+    <string name="september">ספטמבר</string>
+    <string name="october">אוקטובר</string>
+    <string name="november">ובמבר</string>
+    <string name="december">דצמבר</string>
+    <string name="update">עדכון</string>
 </resources>

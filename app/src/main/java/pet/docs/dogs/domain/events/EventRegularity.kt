@@ -28,7 +28,18 @@ enum class EventRegularity (val eventValueId:Int, val eventNum:Int) {
                 1 -> EveryDay
                 2 -> EveryMonth
                 3 -> ThreeMonth
-                5 -> EveryYear
+                4 -> EveryYear
+                else -> ExceptionRegularity
+            }
+        }
+
+        fun getRegularityByValue(textValue: String, context:Context): EventRegularity {
+            return when(textValue){
+                context.getString(R.string.never) -> Never
+                context.getString(R.string.every_day) -> EveryDay
+                context.getString(R.string.every_month) -> EveryMonth
+                context.getString(R.string.every_three_months) -> ThreeMonth
+                context.getString(R.string.every_year) -> EveryYear
                 else -> ExceptionRegularity
             }
         }

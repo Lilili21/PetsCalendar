@@ -20,7 +20,7 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="name">Nickname</string>
-    <string name="birthday_format">Date of birth   dd-mm-YYYY</string>
+    <string name="birthday_format">Date of birth   dd.mm.YYYY</string>
     <string name="birthday">Date of birth</string>
     <string name="gender">Gender</string>
     <!-- Strings used for fragments for navigation -->
@@ -48,5 +48,30 @@
     <string name="worm_pill">Worm pill</string>
     <string name="buying_food">Order food</string>
     <string name="exception_type">Exception type</string>
+
+    <string name="events_on_date">Events on %1$s</string>
+    <string name="events_saved">Event %1$s saved %2$s</string>
+    <string name="event_deleted">This event is already deleted, press update</string>
+    <string name="event_deleted_update">Event deleted, press update</string>
+    <string name="event_changed_update">Event changed, press update</string>
+    <string name="incorrect_expired_date">Check the expiration date</string>
+    <string name="early_expired_date">Expiration date should be later then current event</string>
+    <string name="expired_date_hint">Until </string>
+    <string name="every_day_since">Every day since </string>
+    <string name="no_expiration_date">No expiration date</string>
+
+    <string name="january">January</string>
+    <string name="february">February</string>
+    <string name="march">March</string>
+    <string name="april">April</string>
+    <string name="may">May</string>
+    <string name="june">June</string>
+    <string name="july">July</string>
+    <string name="august">August</string>
+    <string name="september">September</string>
+    <string name="october">October</string>
+    <string name="november">November</string>
+    <string name="december">December</string>
+    <string name="update">Update</string>
 
 </resources>

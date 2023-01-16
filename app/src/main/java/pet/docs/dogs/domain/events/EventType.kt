@@ -32,6 +32,18 @@ enum class EventType(val eventValueId:Int, val eventNum:Int) {
                 else -> ExceptionType
             }
         }
+
+        fun getEventTypeByValue(textValue: String, context:Context): EventType {
+            return when(textValue){
+                context.getString(R.string.rabies_vaccination) -> RabiesVaccination
+                context.getString(R.string.tick_pill) -> TickPill
+                context.getString(R.string.tick_spray) -> TickSpray
+                context.getString(R.string.worm_pill) -> WormPill
+                context.getString(R.string.buying_food) -> BuyingFood
+                context.getString(R.string.exception_type) -> ExceptionType
+                else -> ExceptionType
+            }
+        }
     }
 
     fun getStringValue(context : Context) : String{

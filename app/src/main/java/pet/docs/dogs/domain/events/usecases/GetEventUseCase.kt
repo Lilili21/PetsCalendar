@@ -1,7 +1,8 @@
-package pet.docs.dogs.domain.events
+package pet.docs.dogs.domain.events.usecases
 
 import android.content.Context
 import pet.docs.dogs.data.eventsDb.EventDb
+import pet.docs.dogs.domain.events.Event
 import java.time.LocalDate
 import kotlin.collections.HashMap
 
@@ -14,6 +15,11 @@ class GetEventUseCase(private var userRepository: EventDb, private var context :
             listOfEvents.add(Event(eventElement))
         }
         return listOfEvents
+    }
+
+    fun getEvent(id: Int): Event {
+        val event = userRepository.getEventById(id)
+        return Event(event)
     }
  
     fun getEvents(month: Int, year: Int) : List<HashMap<String, String>> {

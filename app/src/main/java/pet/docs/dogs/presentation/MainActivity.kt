@@ -20,19 +20,19 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.popup_add_event.view.*
 import pet.docs.dogs.R
-import pet.docs.dogs.data.animalInfo.DogInformationStorageImpl
 import pet.docs.dogs.data.eventsDb.EventDb
-import pet.docs.dogs.domain.animals.GetDogInfoUseCase
-import pet.docs.dogs.domain.animals.IsDogExistUseCase
 import pet.docs.dogs.domain.events.*
+import pet.docs.dogs.domain.events.usecases.GetEventUseCase
+import pet.docs.dogs.domain.events.usecases.SaveEventUseCase
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 
 private const val TAG = "MAIN_ACTIVITY"
-private val DEFAULT_DATE: LocalDate = LocalDate.parse("0001-01-01")
 
 class MainActivity : AppCompatActivity() {
 
-    private var dateFromCalendar: LocalDate = DEFAULT_DATE
+    private var dateFromCalendar: LocalDate = LocalDate.parse(Event.DEFAULT_DATE)
 
     private lateinit var viewModel: MainActivityViewModel
 
@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         // Call findViewById on the NavigationView
         navView = findViewById(R.id.navView)
-
         if (viewModel.needToChangeTitle()) {
             navView.menu.findItem(R.id.animal1).title = viewModel.dogName()
         }
@@ -137,7 +136,7 @@ class MainActivity : AppCompatActivity() {
         val viewPopUp = layoutInflater.inflate(R.layout.popup_add_event, null)
         initPopUp(viewPopUp)
         readDate()
-        val eventType = viewPopUp.findViewById<Spinner>(R.id.eventType)
+         val eventType = viewPopUp.findViewById<Spinner>(R.id.eventType)
         eventType.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
@@ -165,29 +164,26 @@ class MainActivity : AppCompatActivity() {
 
     fun showEvents(view: View) {
         readDate()
-        if (dateFromCalendar == DEFAULT_DATE) {
-            Toast.makeText(this,getString(R.string.date_notification), Toast.LENGTH_LONG).show()
+        val elementList = GetEventUseCase(EventDb(this), this).getEvents(dateFromCalendar)
+        if (elementList.isNotEmpty()) {
+            val viewPopUp = layoutInflater.inflate(R.layout.popup_show_events, null)
+            initPopUp(viewPopUp)
+            val adapter = SimpleAdapter(
+                this, elementList, R.layout.pattern_show_events,
+                arrayOf(Event.EVENT_TYPE, Event.COMMENT), intArrayOf(R.id.event_title, R.id.comment)
+            )
+            addAdapter(viewPopUp, adapter)
+            popUp.update()
+            popUp.showAsDropDown(addEvent, -340, 0, Gravity.END)
+           // Toast.makeText(this,getString(R.string.events_on_date,dateFromCalendar.toString()), Toast.LENGTH_SHORT).show()
         } else {
-            val elementList = GetEventUseCase(EventDb(this), this).getEvents(dateFromCalendar)
-            if (elementList.isNotEmpty()) {
-                val viewPopUp = layoutInflater.inflate(R.layout.popup_show_events, null)
-                initPopUp(viewPopUp)
-                val adapter = SimpleAdapter(
-                    this, elementList, R.layout.pattern_show_events,
-                    arrayOf(Event.EVENT_TYPE, Event.COMMENT), intArrayOf(R.id.event_title, R.id.comment)
-                )
-                dddAdapter(viewPopUp, adapter)
-                popUp.update()
-                popUp.showAsDropDown(addEvent, -340, 0, Gravity.END)
-            } else {
-                Toast.makeText(this, getString(R.string.empty_events_list_this_day), Toast.LENGTH_LONG).show()
-            }
+            Toast.makeText(this, getString(R.string.empty_events_list_this_day), Toast.LENGTH_SHORT).show()
         }
     }
 
     fun cancelClicked(view: View) {
-        returnToDefaultDateAndDismissEventPopUp()
-        EventDb(this).deleteAll()
+        popUp.dismiss()
+        //EventDb(this).deleteAll()
     }
 
 
@@ -195,11 +191,14 @@ class MainActivity : AppCompatActivity() {
         val event = readEventFromScreen()
         val elementAdded = SaveEventUseCase(EventDb(this)).execute(event)
         if (elementAdded) {
-            returnToDefaultDateAndDismissEventPopUp()
+            if (event != null) {
+                Toast.makeText(this,getString(R.string.events_saved,event.type.getStringValue(this), event.date.toString()), Toast.LENGTH_SHORT).show()
+            }
+            popUp.dismiss()
         }
     }
 
-    private fun dddAdapter(viewPopUp: View, adapter: SimpleAdapter){
+    private fun addAdapter(viewPopUp: View, adapter: SimpleAdapter){
         val listOfElements = viewPopUp.findViewById<ListView>(R.id.viewEventsFromPopUp)
         listOfElements.adapter = adapter
     }
@@ -210,19 +209,16 @@ class MainActivity : AppCompatActivity() {
         popUp.isFocusable = true
     }
 
-    private fun returnToDefaultDateAndDismissEventPopUp() {
-        dateFromCalendar = DEFAULT_DATE
-        popUp.dismiss()
-    }
-
     private fun readDate() {
         calendarView.setOnDateChangeListener { _, i, i1, i2 ->
             dateFromCalendar = LocalDate.of(i, (i1 + 1), i2)
         }
+        if(dateFromCalendar == LocalDate.parse(Event.DEFAULT_DATE))
+            dateFromCalendar = Instant.ofEpochMilli(calendarView.date).atZone(ZoneId.systemDefault()).toLocalDate()
     }
 
     private fun readEventFromScreen(): Event? {
-        if (dateFromCalendar == DEFAULT_DATE) {
+        if (dateFromCalendar == LocalDate.parse(Event.DEFAULT_DATE)) {
             Toast.makeText(this, getString(R.string.date_notification), Toast.LENGTH_LONG).show()
             popUp.dismiss()
             return null
@@ -233,7 +229,8 @@ class MainActivity : AppCompatActivity() {
             dateFromCalendar,
             popUp.contentView.comments.text.toString(),
             EventRegularity.getRegularityById(popUp.contentView.regularity.selectedItemId.toInt()),
-            DEFAULT_DATE
+            LocalDate.parse(Event.DEFAULT_DATE)
         )
     }
+
 }

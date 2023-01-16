@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "events_list")
 data class EventElement(
-    @PrimaryKey(autoGenerate = true) val id : Int?,
+    @PrimaryKey(autoGenerate = true) val id : Int,
     @ColumnInfo(name = "type", typeAffinity = INTEGER) val eType : Int,
     @ColumnInfo(name = "date") val eDate : String,
     @ColumnInfo(name = "comments") val eComments : String?,

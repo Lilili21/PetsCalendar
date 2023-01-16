@@ -2,6 +2,7 @@ package pet.docs.dogs.data.eventsDb
 
 import android.content.Context
 import androidx.room.Room
+import pet.docs.dogs.domain.events.Event
 import pet.docs.dogs.domain.events.EventElement
 
 class EventDb(val context: Context) {
@@ -54,6 +55,23 @@ class EventDb(val context: Context) {
         return allEvents
     }
 
+    fun getEventById(id:Int): EventElement {
+        val db = Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "events_list"
+        ).fallbackToDestructiveMigration().build()
+        var event: EventElement = Event().convertToWriteInDb()
+        val t = Thread{
+            event = db.eventDao().getEventById(id)
+        }
+        t.start()
+        t.join()
+        db.close()
+
+        return event
+    }
+
     fun getEventsWithType(eType: Int) : List<EventElement>{
         val db = Room.databaseBuilder(
             context,
@@ -71,6 +89,19 @@ class EventDb(val context: Context) {
         return allEvents
     }
 
+    fun updateEvent(event:EventElement){
+        val db = Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "events_list"
+        ).fallbackToDestructiveMigration().build()
+        val t = Thread{
+            db.eventDao().update(event)
+        }
+        t.start()
+        t.join()
+        db.close()
+    }
 
     fun deleteEvent(event: EventElement){
         val db = Room.databaseBuilder(
@@ -80,6 +111,20 @@ class EventDb(val context: Context) {
         ).fallbackToDestructiveMigration().build()
         val t = Thread{
             db.eventDao().delete(event)
+        }
+        t.start()
+        t.join()
+        db.close()
+    }
+
+    fun deleteByEventId(id: Int){
+        val db = Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "events_list"
+        ).fallbackToDestructiveMigration().build()
+        val t = Thread{
+            db.eventDao().deleteByEventId(id)
         }
         t.start()
         t.join()
@@ -99,4 +144,22 @@ class EventDb(val context: Context) {
         t.join()
         db.close()
     }
+
+    fun isExists(elementId: Int):Boolean{
+        val db = Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "events_list"
+        ).fallbackToDestructiveMigration().build()
+        var elementExists = false
+        val t = Thread{
+            elementExists = db.eventDao().isExists(elementId)
+        }
+        t.start()
+        t.join()
+        db.close()
+
+        return elementExists
+    }
+
 }

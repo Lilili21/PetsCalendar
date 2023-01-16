@@ -48,4 +48,29 @@
     <string name="worm_pill">Таблетка от глистов</string>
     <string name="buying_food">Корм куплен</string>
     <string name="exception_type">Ошибка</string>
+
+    <string name="events_on_date">События на %1$s</string>
+    <string name="events_saved">Событие %1$s сохранено %2$s</string>
+    <string name="event_deleted">Это событие удалено. Нажмите обновить</string>
+    <string name="event_deleted_update">Событие удалено, нажмите обновить</string>
+    <string name="event_changed_update">Событие изменено, нажмите обновить</string>
+    <string name="incorrect_expired_date">Дата последнего события некорректна</string>
+    <string name="early_expired_date">Дата окончания должна быть раньше события</string>
+    <string name="expired_date_hint">До </string>
+    <string name="every_day_since">Каждый день с </string>
+    <string name="no_expiration_date">Событие без конечной даты</string>
+
+    <string name="january">Январь</string>
+    <string name="february">Февраль</string>
+    <string name="march">Март</string>
+    <string name="april">Апрель</string>
+    <string name="may">Май</string>
+    <string name="june">Июнь</string>
+    <string name="july">Июль</string>
+    <string name="august">Август</string>
+    <string name="september">Сентябрь</string>
+    <string name="october">Октябрь</string>
+    <string name="november">Ноябрь</string>
+    <string name="december">Декабрь</string>
+    <string name="update">Обновить</string>
 </resources>

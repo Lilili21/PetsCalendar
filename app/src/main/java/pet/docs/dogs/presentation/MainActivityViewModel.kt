@@ -4,10 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import pet.docs.dogs.data.animalInfo.DogInformationStorageImpl
-import pet.docs.dogs.data.eventsDb.EventDb
 import pet.docs.dogs.domain.animals.GetDogInfoUseCase
 import pet.docs.dogs.domain.animals.IsDogExistUseCase
-import pet.docs.dogs.domain.events.GetEventUseCase
 
 private const val TAG = "MAIN_ACTIVITY"
 
